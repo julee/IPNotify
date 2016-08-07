@@ -8,8 +8,9 @@ def main():
     global SERVER_PORT
     if(len(sys.argv) == 2):
         SERVER_PORT = int(sys.argv[1])
-    addr = ('0.0.0.0', SERVER_PORT)
+    addr = ('<broadcast>', SERVER_PORT)
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     s.sendto('GetIP'.encode('utf-8'), addr)
     
     responseData, peerAddr = s.recvfrom(1024)
