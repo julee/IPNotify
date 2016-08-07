@@ -2,4 +2,8 @@ import daemon
 import Server
 
 with daemon.DaemonContext():
-    Server.main()
+    while True:
+        try:
+            Server.main()
+        except:
+            print('exception occured')
